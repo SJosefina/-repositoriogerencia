@@ -1,0 +1,2 @@
+# -repositoriogerencia
+Repositorio gerencia
