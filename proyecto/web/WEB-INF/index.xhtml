@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Gerencia</title>
+        <link href="iconfont/material-icons.css" rel="stylesheet"/>
+        <link href="css/materialize.min.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+        <div class="navbar-fixed">
+            <nav class=" indigo darken-4">
+                <a class="brand-logo center"><i class="material-icons left">account_balance</i>Gerencia<i class="material-icons right">account_balance</i></a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="#">Cerrar sesión<i class="material-icons right">power_settings_new</i></a></li>
+                </ul>
+                <ul class="side-nav" id="mobile-demo">
+                    <li><a href="#">Cerrar sesión<i class="material-icons right">power_settings_new</i></a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="container">
+            <h:form>
+                <div class="row">
+                    <h:commandLink action="#{gerencia.verUsuarios}"><div class="hoverable center-align card-panel col l4 m4 s12">
+                        <h5 class="center-align caption">Usuarios</h5>
+                        <i class="material-icons large">group</i>
+                    </div></h:commandLink>
+                    <h:commandLink action="comerciales.xhtml"><div class="hoverable center-align card-panel col l4 m4 s12">
+                        <h5 class="center-align caption">Comerciales</h5>
+                        <i class="material-icons large">aspect_ratio</i>
+                    </div></h:commandLink>
+                    <h:commandLink action="roles.xhtml"><div class="hoverable center-align card-panel col l4 m4 s12">
+                        <h5 class="center-align caption">Roles</h5>
+                        <i class="material-icons large">fingerprint</i>
+                    </div></h:commandLink>
+                </div>
+            </h:form>
+        </div>
+    </h:body>
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.min.js" type="text/javascript"></script>
+    <script src="js/init.js"></script>
+</html>

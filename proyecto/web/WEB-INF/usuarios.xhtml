@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Gerencia - Usuarios</title>
+        <link href="iconfont/material-icons.css" rel="stylesheet"/>
+        <link href="css/materialize.min.css" rel="stylesheet" type="text/css"/>
+    </h:head>
+    <h:body>
+        <div class="navbar-fixed">
+            <nav class=" indigo darken-4">
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                <ul class="left hide-on-med-and-down">
+                    <li><a href="index.xhtml"><i class="material-icons left">keyboard_arrow_left</i>Volver a gerencia</a></li>
+                </ul>
+                <ul class="right hide-on-med-and-down">
+                    <li><a class="modal-trigger tooltipped" data-delay='50' data-tooltip='Nuevo usuario' data-position='bottom' href="#agregarModal">Agregar<i class="material-icons right">person_add</i></a></li>
+                    <li><a href="#">Cerrar sesión<i class="material-icons right">power_settings_new</i></a></li>
+                </ul>
+                <ul class="side-nav" id="mobile-demo">
+                    <li><a class="modal-trigger tooltipped" data-delay='50' data-tooltip='Nuevo usuario' data-position='right' href="#agregarModal">Agregar<i class="material-icons right">person_add</i></a></li>
+                    <li><a href="index.xhtml"><i class="material-icons left">keyboard_arrow_left</i>Volver a gerencia</a></li>
+                    <li><a href="#">Cerrar sesión<i class="material-icons right">power_settings_new</i></a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <table>
+                        <thead>
+                            <th>Cédula</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Teléfono</th>
+                            <th>Dirección</th>
+                            <th colspan="2">Acciones</th>
+                        </thead>
+                        <tbody>
+                            <h:form>
+                                <!--<h:inputHidden id="cC" value="#{gerencia.cc}"/>-->
+                                <c:forEach var="usuario" items="#{gerencia.arrUsuarios}">
+                                    <tr>
+                                        <td>#{usuario.cc}</td>
+                                        <td>#{usuario.nombres}</td>
+                                        <td>#{usuario.apellidos}</td>
+                                        <td>#{usuario.tel}</td>
+                                        <td>#{usuario.direccion}</td>
+                                        <td><h:commandLink action="#{gerencia.modUsuarioUno(usuario.cc)}"><i class="material-icons right tooltipped" data-delay='50' data-tooltip='Editar' data-position='left'>mode_edit</i></h:commandLink></td>
+                                        <td><a class="modal-trigger" href="#borrarModal" onclick="document.getElementById('frm:cC').value=#{usuario.cc}"><i class="material-icons right tooltipped" data-delay='50' data-tooltip='Eliminar' data-position='left'>delete</i></a></td>
+                                    </tr>
+                                </c:forEach>
+                            </h:form>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="borrarModal" class="modal">
+            <h:form id="frm">
+                <div class="modal-content">
+                    <h4>Desea eliminar este usuario?</h4>
+                    <h:inputHidden id="cC" value="#{gerencia.cc}"/>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat">Cancelar</a>
+                    <h:commandLink value="Eliminar" action="#{gerencia.borrarUsuario}" class="modal-action modal-close waves-effect waves-red btn-flat"/>
+                </div>
+            </h:form>
+        </div><!-- Modal de borrar -->
+        <div id="agregarModal" class="modal modal-fixed-footer">
+            <h:form>
+                <div class="modal-content">
+                    <h4>Agregar nuevo usuario</h4>
+                    <div class="input-field">
+                        <i class="material-icons prefix">recent_actors</i>
+                        <h:inputText id="cc" value="#{gerencia.cc}"/>
+                        <h:outputLabel value="Cédula" for="cc"/>
+                    </div>
+                    <div class="input-field">
+                        <i class="material-icons prefix">person</i>
+                        <h:inputText id="nombre" value="#{gerencia.nombres}"/>
+                        <h:outputLabel value="Nombres" for="nombre"/>
+                    </div>
+                    <div class="input-field">
+                        <i class="material-icons prefix">person</i>
+                        <h:inputText id="apellido" value="#{gerencia.apellidos}"/>
+                        <h:outputLabel value="Apellidos" for="apellido"/>
+                    </div>
+                    <div class="input-field">
+                        <i class="material-icons prefix">phone</i>
+                        <h:inputText id="tel" value="#{gerencia.tel}"/>
+                        <h:outputLabel value="Teléfono" for="tel"/>
+                    </div>
+                    <div class="input-field">
+                        <i class="material-icons prefix">call_split</i>
+                        <h:inputText id="direccion" value="#{gerencia.direccion}"/>
+                        <h:outputLabel value="Dirección" for="direccion"/>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="modal-action modal-close waves-effect waves-red btn-flat">Cancelar</a>
+                    <h:commandLink value="Agregar" action="#{gerencia.registrarUsuario}" class="modal-action modal-close waves-effect waves-green btn-flat"/>
+                </div>
+            </h:form>
+        </div><!-- Modal de agregar -->
+    </h:body>
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/materialize.min.js" type="text/javascript"></script>
+    <script src="js/init.js"></script>
+</html>
